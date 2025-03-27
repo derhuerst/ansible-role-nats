@@ -1,5 +1,5 @@
 ---
-- name: Install NATS CLI package from the GitHub.
+- name: Install NATS CLI package from the nats-io/natscli GitHub repository's releases.
   ansible.builtin.apt:
     state: present
     deb: "https://github.com/nats-io/natscli/releases/download/\

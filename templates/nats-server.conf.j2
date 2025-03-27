@@ -92,3 +92,7 @@ jetstream {
   {% endif %}
 }
 {% endif %}
+
+{% if nats_additional_config_path %}
+include {{ nats_additional_config_path }}
+{% endif %}

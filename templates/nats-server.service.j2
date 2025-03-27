@@ -11,9 +11,16 @@ LimitNOFILE=500000
 RestartSec=5s
 Restart=on-failure
 PrivateTmp=true
-ExecReload=/bin/kill -s HUP $MAINPID
 ExecStart=/usr/local/bin/nats-server -c /etc/nats-server.conf
-ExecStop=/bin/kill -s SIGINT $MAINPID
+# Note: Using the `"$MAINPID"` notation does not work, systemd won't expand it!
+# see also https://docs.nats.io/running-a-nats-service/nats_admin/signals#multiple-processes
+ExecReload=/usr/local/bin/nats-server --signal reload="${MAINPID}"
+# see also https://github.com/nats-io/nats-server/blob/ac23d77/server/signal.go#L144-L162
+# - `stop` sends SIGKILL
+# - `quit` sends SIGINT
+# - `term` sends SIGTERM
+# We want the server to exit cleanly (with status 0), so we use `quit`.
+ExecStop=/usr/local/bin/nats-server --signal quit="${MAINPID}"
 User=nats
 Group=nats
 # The nats-server uses SIGUSR2 to trigger using Lame Duck Mode (LDM) shutdown

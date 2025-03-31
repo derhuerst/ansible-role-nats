@@ -42,3 +42,5 @@ nats_jetstream_enabled: false
 nats_jetstream_max_mem: '{{ None }}'
 nats_jetstream_max_file: '{{ None }}'
 nats_jetstream_store_dir: '/var/lib/jetstream'
+
+nats_additional_config_path: ''

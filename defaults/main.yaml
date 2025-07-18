@@ -4,6 +4,7 @@ natscli_version: "0.2.4"
 # adapted from https://github.com/geerlingguy/ansible-role-docker/blob/bb8a21a/defaults/main.yml#L48
 natscli_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 
+nats_server_enabled: "true"
 nats_version: "2.11.6"
 # adapted from https://github.com/geerlingguy/ansible-role-docker/blob/bb8a21a/defaults/main.yml#L48
 nats_server_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"

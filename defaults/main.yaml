@@ -1,6 +1,6 @@
 ---
 natscli_enabled: "true"
-natscli_version: "0.1.5"
+natscli_version: "0.1.6"
 # adapted from https://github.com/geerlingguy/ansible-role-docker/blob/bb8a21a/defaults/main.yml#L48
 natscli_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 

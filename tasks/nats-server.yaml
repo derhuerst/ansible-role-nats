@@ -1,5 +1,5 @@
 ---
-- name: Install NATS package from the nats-io/nats-server GitHub repository's releases.
+- name: Install NATS Server binary from the nats-io/nats-server GitHub repository's releases.
   ansible.builtin.apt:
     state: present
     deb: "https://github.com/nats-io/nats-server/releases/download/\
@@ -9,7 +9,7 @@
   ansible.builtin.import_tasks:
     file: user-group-nats.yaml
 
-- name: Ensure NATS service file is available.
+- name: Ensure nats-server.service systemd unit is configured.
   ansible.builtin.template:
     src: nats-server.service.j2
     dest: /etc/systemd/system/nats-server.service
@@ -18,13 +18,13 @@
   notify:
     - Reload daemon nats-server
 
-- name: Ensure NATS service is started and enabled on boot.
+- name: Ensure nats-server.service systemd unit is started and enabled on boot.
   ansible.builtin.service:
     name: nats-server
     state: started
     enabled: true
 
-- name: Create or update NATS configuration file (/etc/nats-server.conf)
+- name: Create or update NATS Server configuration file (/etc/nats-server.conf)
   ansible.builtin.template:
     src: nats-server.conf.j2
     dest: /etc/nats-server.conf

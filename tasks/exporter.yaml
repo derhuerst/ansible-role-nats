@@ -1,5 +1,5 @@
 ---
-- name: Install NATS Prometheus exporter package from the nats-io/prometheus-nats-exporter GitHub repository's releases.
+- name: Install NATS Prometheus exporter binary from the nats-io/prometheus-nats-exporter GitHub repository's releases.
   ansible.builtin.apt:
     state: present
     deb: "https://github.com/nats-io/prometheus-nats-exporter/releases/download/\
@@ -11,7 +11,7 @@
   ansible.builtin.import_tasks:
     file: user-group-nats.yaml
 
-- name: Ensure NATS exporter service file is available.
+- name: Ensure nats-exporter.service systemd unit is configured.
   ansible.builtin.template:
     src: nats-exporter.service.j2
     dest: /etc/systemd/system/nats-exporter.service
@@ -20,7 +20,7 @@
   notify:
     - Reload daemon nats-exporter
 
-- name: Ensure NATS exporter service is started and enabled on boot.
+- name: Ensure nats-exporter.service systemd unit is started and enabled on boot.
   ansible.builtin.service:
     name: nats-exporter
     state: started

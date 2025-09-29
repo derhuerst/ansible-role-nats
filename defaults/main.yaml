@@ -5,7 +5,7 @@ natscli_version: "0.2.4"
 natscli_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 
 nats_server_enabled: "true"
-nats_version: "2.11.9"
+nats_version: "2.12.0"
 # adapted from https://github.com/geerlingguy/ansible-role-docker/blob/bb8a21a/defaults/main.yml#L48
 nats_server_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 nats_server_name: '{{ ansible_fqdn }}'
@@ -40,6 +40,7 @@ nats_leaf_node_listen_enabled: false
 nats_leaf_node_remotes: []
 
 nats_jetstream_enabled: false
+nats_jetstream_strict: false
 nats_jetstream_max_mem: '{{ None }}'
 nats_jetstream_max_file: '{{ None }}'
 nats_jetstream_store_dir: '/var/lib/jetstream'

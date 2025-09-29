@@ -81,6 +81,7 @@ leafnodes {
 
 {% if nats_jetstream_enabled %}
 jetstream {
+  strict: {{ nats_jetstream_strict }}
   {% if nats_jetstream_max_mem %}
   max_mem: {{ nats_jetstream_max_mem }}
   {% endif %}

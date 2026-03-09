@@ -5,7 +5,7 @@
     deb: "https://github.com/nats-io/prometheus-nats-exporter/releases/download/\
       v{{ nats_prometheus_exporter_version }}/\
       prometheus-nats-exporter-\
-      v{{ nats_prometheus_exporter_version }}-linux-{{ ansible_architecture }}.deb"
+      v{{ nats_prometheus_exporter_version }}-linux-{{ ansible_facts['architecture'] }}.deb"
 
 - name: Create the "nats" user & group
   ansible.builtin.import_tasks:
